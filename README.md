@@ -4,7 +4,7 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 
 ## Implementation Goals
 
-- [ ] Create game world with a floor.
+- [x] Create game world with a floor.
 - [ ] Add an object that represents the main character. Apply a constant force to the character so it falls to the floor.
 - [ ] Add obstacles on the right of the game area. The obstacles should slide across the screen toward the left. The obstacles will appear in pairs, with a vertical gap between them.
 - [ ] Detect when the character collides with the floor or obstacles, and reset the game when a collision occurs.
@@ -20,7 +20,7 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 ## How to Run
 
 1. Clone the repository.
-2. Open the project in [Godot 4.3](https://godotengine.org/download/archive/4.3-stable/). 
+2. Open the project in [Godot 4.3](https://godotengine.org/download/archive/4.3-stable/).
 3. Press the play button in the Godot editor to run the game.
 
 ## License
