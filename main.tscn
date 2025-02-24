@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=8 format=3 uid="uid://cjyi4e8wdrbah"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_4wtk3"]
 
 [sub_resource type="Gradient" id="Gradient_dofsh"]
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
@@ -8,6 +10,15 @@ gradient = SubResource("Gradient_dofsh")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqo2p"]
 size = Vector2(256, 1)
+
+[sub_resource type="Gradient" id="Gradient_0d315"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vs35t"]
+gradient = SubResource("Gradient_0d315")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfbeh"]
+size = Vector2(52, 46)
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,3 +33,17 @@ texture = SubResource("GradientTexture1D_foeal")
 position = Vector2(-3.8147e-06, 1.43051e-06)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nqo2p")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(309, 640)
+script = ExtResource("1_4wtk3")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-0.999996, -9.53674e-07)
+scale = Vector2(0.203125, 46)
+texture = SubResource("GradientTexture1D_vs35t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_jfbeh")
