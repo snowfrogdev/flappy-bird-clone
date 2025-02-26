@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b07mee5ov53cq"]
+
+[ext_resource type="Script" path="res://obstacle.gd" id="1_wpxns"]
+
+[sub_resource type="Gradient" id="Gradient_6qfbe"]
+colors = PackedColorArray(0.996078, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8gqqf"]
+gradient = SubResource("Gradient_6qfbe")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vp76"]
+size = Vector2(175, 1278)
+
+[node name="Obstacle" type="AnimatableBody2D"]
+script = ExtResource("1_wpxns")
+SPEED = 1000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 639.75)
+scale = Vector2(0.6875, 1280.5)
+texture = SubResource("GradientTexture1D_8gqqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 640)
+shape = SubResource("RectangleShape2D_5vp76")

@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=11 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_4wtk3"]
+[ext_resource type="Script" path="res://obstacle_spawner.gd" id="2_bnk71"]
+[ext_resource type="PackedScene" uid="uid://b07mee5ov53cq" path="res://obstacle.tscn" id="3_u6ai8"]
 
 [sub_resource type="Gradient" id="Gradient_dofsh"]
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
@@ -20,6 +22,9 @@ gradient = SubResource("Gradient_0d315")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfbeh"]
 size = Vector2(52, 46)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vloyf"]
+size = Vector2(144, 541)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Floor" type="Sprite2D" parent="."]
@@ -36,7 +41,7 @@ shape = SubResource("RectangleShape2D_nqo2p")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(309, 640)
 script = ExtResource("1_4wtk3")
-FLAP_STRENGTH = -400.0
+FLAP_STRENGTH = -500.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -47,3 +52,19 @@ texture = SubResource("GradientTexture1D_vs35t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_jfbeh")
+
+[node name="ObstacleSpawner" type="Area2D" parent="."]
+position = Vector2(1228, 650)
+script = ExtResource("2_bnk71")
+obstacle_scene = ExtResource("3_u6ai8")
+gap_size = 300.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleSpawner"]
+position = Vector2(1, -59.5)
+shape = SubResource("RectangleShape2D_vloyf")
+
+[node name="Timer" type="Timer" parent="ObstacleSpawner"]
+wait_time = 2.5
+autostart = true
+
+[connection signal="timeout" from="ObstacleSpawner/Timer" to="ObstacleSpawner" method="_on_timer_timeout"]
