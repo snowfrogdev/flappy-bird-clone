@@ -31,12 +31,12 @@ texture = SubResource("GradientTexture1D_foeal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
 position = Vector2(-3.8147e-06, 1.43051e-06)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_nqo2p")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(309, 640)
 script = ExtResource("1_4wtk3")
+FLAP_STRENGTH = -400.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
