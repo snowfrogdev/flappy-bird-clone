@@ -7,7 +7,7 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 - [x] Create game world with a floor.
 - [x] Add an object that represents the main character. Apply a constant force to the character so it falls to the floor.
 - [x] Add obstacles on the right of the game area. The obstacles should slide across the screen toward the left. The obstacles will appear in pairs, with a vertical gap between them.
-- [ ] Detect when the character collides with the floor or obstacles, and reset the game when a collision occurs.
+- [x] Detect when the character collides with the floor or obstacles, and reset the game when a collision occurs.
 - [ ] Accumulate one point for each obstacle that the player passes. Display the score.
 
 ### Stretch Goals

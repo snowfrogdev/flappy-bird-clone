@@ -49,6 +49,7 @@ shape = SubResource("RectangleShape2D_nqo2p")
 
 [node name="Player" type="CharacterBody2D" parent="Game"]
 position = Vector2(309, 640)
+collision_layer = 0
 script = ExtResource("1_4wtk3")
 FLAP_STRENGTH = -500.0
 metadata/_edit_group_ = true
@@ -84,5 +85,6 @@ script = ExtResource("5_j1jmq")
 position = Vector2(-2210, 667)
 shape = SubResource("RectangleShape2D_6u2hk")
 
+[connection signal="player_collided" from="Game/Player" to="Game" method="_on_player_player_collided"]
 [connection signal="timeout" from="Game/ObstacleSpawner/Timer" to="Game/ObstacleSpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Game/ObstacleDestroyer" to="Game/ObstacleDestroyer" method="_on_body_entered"]
