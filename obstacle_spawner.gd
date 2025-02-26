@@ -5,6 +5,9 @@ extends Area2D
 
 @onready var spawn_area: CollisionShape2D = $CollisionShape2D
 
+func _ready() -> void:
+  spawn_obstacle_pair()
+
 func _on_timer_timeout() -> void:
   spawn_obstacle_pair()
   
