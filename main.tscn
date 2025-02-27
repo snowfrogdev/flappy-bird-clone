@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=13 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" path="res://game.gd" id="1_jn8tf"]
 [ext_resource type="Script" path="res://obstacle_spawner.gd" id="2_bnk71"]
-[ext_resource type="PackedScene" uid="uid://b07mee5ov53cq" path="res://obstacle.tscn" id="3_u6ai8"]
-[ext_resource type="Script" path="res://obstacle_destroyer.gd" id="5_j1jmq"]
+[ext_resource type="PackedScene" uid="uid://bmv518npd614e" path="res://obstacle_pair.tscn" id="4_26q5e"]
 
 [sub_resource type="Gradient" id="Gradient_dofsh"]
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
@@ -24,11 +23,11 @@ gradient = SubResource("Gradient_0d315")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfbeh"]
 size = Vector2(60, 58)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vloyf"]
-size = Vector2(144, 541)
+[sub_resource type="SystemFont" id="SystemFont_u4few"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u2hk"]
-size = Vector2(552, 1348)
+[sub_resource type="LabelSettings" id="LabelSettings_lliya"]
+font = SubResource("SystemFont_u4few")
+font_size = 60
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -47,9 +46,9 @@ texture = SubResource("GradientTexture1D_foeal")
 position = Vector2(-3.8147e-06, 1.43051e-06)
 shape = SubResource("RectangleShape2D_nqo2p")
 
-[node name="Player" type="CharacterBody2D" parent="Game"]
+[node name="Player" type="CharacterBody2D" parent="Game" groups=["Player"]]
 position = Vector2(309, 640)
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_4wtk3")
 FLAP_STRENGTH = -500.0
 metadata/_edit_group_ = true
@@ -63,28 +62,48 @@ texture = SubResource("GradientTexture1D_vs35t")
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_jfbeh")
 
-[node name="ObstacleSpawner" type="Area2D" parent="Game"]
-position = Vector2(1777, 647)
+[node name="ObstacleSpawner" type="Node2D" parent="Game"]
+position = Vector2(1749, -2)
 script = ExtResource("2_bnk71")
-obstacle_scene = ExtResource("3_u6ai8")
-gap_size = 300.0
+obstacle_scene = ExtResource("4_26q5e")
+spawn_interval = 2.0
+speed = 250.0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/ObstacleSpawner"]
-position = Vector2(8, -14)
-shape = SubResource("RectangleShape2D_vloyf")
+[node name="TopGapLimit" type="Marker2D" parent="Game/ObstacleSpawner"]
+position = Vector2(0, 166)
+gizmo_extents = 100.0
+
+[node name="BottomGapLimit" type="Marker2D" parent="Game/ObstacleSpawner"]
+position = Vector2(0, 953)
+gizmo_extents = 100.0
 
 [node name="Timer" type="Timer" parent="Game/ObstacleSpawner"]
 wait_time = 2.5
-autostart = true
 
-[node name="ObstacleDestroyer" type="Area2D" parent="Game"]
-script = ExtResource("5_j1jmq")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/ObstacleDestroyer"]
-position = Vector2(-2210, 667)
-shape = SubResource("RectangleShape2D_6u2hk")
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 87.0
+offset_right = 20.0
+offset_bottom = 110.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_lliya")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="player_collided" from="Game/Player" to="Game" method="_on_player_player_collided"]
+[connection signal="score_point" from="Game/ObstacleSpawner" to="Game" method="_on_obstacle_spawner_score_point"]
 [connection signal="timeout" from="Game/ObstacleSpawner/Timer" to="Game/ObstacleSpawner" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Game/ObstacleDestroyer" to="Game/ObstacleDestroyer" method="_on_body_entered"]

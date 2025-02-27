@@ -1,28 +1,37 @@
-extends Area2D
+extends Node2D
 
 @export var obstacle_scene: PackedScene
-@export var gap_size: float = 200.0
+@export var spawn_interval: float = 2.5
+@export var gap_size: float = 250.0
+@export var speed: float = 500.0
 
-@onready var spawn_area: CollisionShape2D = $CollisionShape2D
+@onready var timer = $Timer
+@onready var top_gap_limit = $TopGapLimit
+@onready var bottom_gap_limit = $BottomGapLimit
 
-func _ready() -> void:
-  spawn_obstacle_pair()
+signal score_point
 
-func _on_timer_timeout() -> void:
-  spawn_obstacle_pair()
-  
-func spawn_obstacle_pair() -> void:
-  var top_obstacle = obstacle_scene.instantiate()
-  var top_obstacle_height = top_obstacle.get_node("CollisionShape2D").shape.get_rect().size.y
-  var bottom_obstacle = obstacle_scene.instantiate()
+func _ready():
+  timer.wait_time = spawn_interval
+  timer.timeout.connect(spawn_obstacle)
+  timer.start()
 
-  var area_rect: Rect2 = spawn_area.shape.get_rect()
-  var spawn_x = area_rect.position.x + area_rect.size.x / 2
-  # Pick a random y value for the center of the gap
-  var gap_center = randf_range(area_rect.position.y, area_rect.end.y)
+func spawn_obstacle():
+  var obstacle := obstacle_scene.instantiate() as ObstaclePair
+  add_child(obstacle)
 
-  top_obstacle.position = Vector2(spawn_x, gap_center - gap_size / 2 - top_obstacle_height)
-  bottom_obstacle.position = Vector2(spawn_x, gap_center + gap_size / 2)
+  obstacle.score_point.connect(_on_score_point)
 
-  add_child(top_obstacle)
-  add_child(bottom_obstacle)
+  obstacle.speed = speed
+  obstacle.gap_size = gap_size
+
+  # Use marker positions to determine vertical range
+  var min_y = top_gap_limit.position.y
+  var max_y = bottom_gap_limit.position.y
+
+  # Randomly place the gap between min and max markers
+  obstacle.position_obstacles(min_y, max_y)
+
+func _on_score_point():
+  print("ObstacleSpawner detected score")
+  score_point.emit()
