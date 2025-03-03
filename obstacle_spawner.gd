@@ -12,6 +12,8 @@ extends Node2D
 signal score_point
 
 func _ready():
+  spawn_obstacle()
+  
   timer.wait_time = spawn_interval
   timer.timeout.connect(spawn_obstacle)
   timer.start()
@@ -33,5 +35,4 @@ func spawn_obstacle():
   obstacle.position_obstacles(min_y, max_y)
 
 func _on_score_point():
-  print("ObstacleSpawner detected score")
   score_point.emit()

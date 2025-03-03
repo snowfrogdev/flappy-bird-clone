@@ -4,6 +4,7 @@ var score = 0
 
 @onready var canvas_layer: CanvasLayer = $"/root/CanvasLayer"
 @onready var score_label: Label = $"/root/CanvasLayer/Control/Label"
+@onready var game_over_sfx: AudioStreamPlayer = $"GameOverSfx"
 
 func _ready():
   # Connect the resized signal to a function
@@ -22,11 +23,12 @@ func _update_canvas_offset():
 func _on_player_player_collided() -> void:
   # Restart the game
   get_tree().paused = true
-  await get_tree().create_timer(1.0).timeout
+
+  game_over_sfx.play()
+  await game_over_sfx.finished
+   
   get_tree().reload_current_scene()
 
-
 func _on_obstacle_spawner_score_point() -> void:
-  print("Game detected score")
   score += 1
   score_label.text = str(score)

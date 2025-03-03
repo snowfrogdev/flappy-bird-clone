@@ -5,6 +5,7 @@ var gap_size: float = 250.0
 
 @onready var top_obstacle: StaticBody2D = $TopObstacle
 @onready var bottom_obstacle: StaticBody2D = $BottomObstacle
+@onready var score_sfx: AudioStreamPlayer = $ScoreSfx
 
 signal score_point
 
@@ -33,5 +34,5 @@ func position_obstacles(min_y, max_y):
 
 func _on_score_trigger_body_exited(body: Node2D) -> void:
   if body.is_in_group("Player"):
-    print("Obstacle Pair detected player")
+    score_sfx.play()
     score_point.emit()

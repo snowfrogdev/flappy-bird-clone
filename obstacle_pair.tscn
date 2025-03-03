@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmv518npd614e"]
+[gd_scene load_steps=6 format=3 uid="uid://bmv518npd614e"]
 
-[ext_resource type="Script" path="res://obstacle_pair.gd" id="1_ae70w"]
+[ext_resource type="Script" uid="uid://c8cg5fssphobo" path="res://obstacle_pair.gd" id="1_ae70w"]
+[ext_resource type="AudioStream" uid="uid://bp7iqyrwukgfk" path="res://sd_0.wav" id="2_lcrwi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4w42"]
 size = Vector2(148, 1282)
@@ -48,5 +49,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreTrigger"]
 position = Vector2(155, 2)
 shape = SubResource("SegmentShape2D_ovxkm")
+
+[node name="ScoreSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lcrwi")
 
 [connection signal="body_exited" from="ScoreTrigger" to="." method="_on_score_trigger_body_exited"]
