@@ -13,7 +13,7 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 ### Stretch Goals
 
 - [x] Add some sounds that will play each time the player gains a point, and when the player loses.
-- [ ] Add a basic game-over screen to display the player’s score.
+- [x] Add a basic game-over screen to display the player’s score.
 - [ ] Track the high-score between play sessions and display the high score alongside the current score.
 - [ ] Add some background art! Try layering the background and scrolling at a different rate to the foreground obstacles. This is called Parallax scrolling.
 

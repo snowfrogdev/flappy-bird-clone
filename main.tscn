@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=20 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
+[ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
 [ext_resource type="Script" uid="uid://b7ablc6ydsy14" path="res://game.gd" id="1_jn8tf"]
 [ext_resource type="Script" uid="uid://caaw0dai57gul" path="res://obstacle_spawner.gd" id="2_bnk71"]
 [ext_resource type="PackedScene" uid="uid://bmv518npd614e" path="res://obstacle_pair.tscn" id="4_26q5e"]
 [ext_resource type="AudioStream" uid="uid://cyisj05b64568" path="res://game_over_2.wav" id="5_sq1ki"]
+[ext_resource type="LabelSettings" uid="uid://cpke6m742rna" path="res://game_over_header_settings.tres" id="6_7mycd"]
 
 [sub_resource type="Gradient" id="Gradient_dofsh"]
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
@@ -30,10 +32,25 @@ size = Vector2(60, 58)
 font = SubResource("SystemFont_u4few")
 font_size = 60
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="Theme" id="Theme_lquwl"]
 
-[node name="Game" type="Node2D" parent="."]
+[sub_resource type="SystemFont" id="SystemFont_7mycd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_272bh"]
+font = SubResource("SystemFont_7mycd")
+font_size = 91
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
+font_size = 50
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_272bh")
+
+[node name="Game" type="Node2D" parent="." node_paths=PackedStringArray("game_over_score_label")]
+process_mode = 1
 script = ExtResource("1_jn8tf")
+game_over_score_label = NodePath("../GameOverOverlay/HBoxContainer/HBoxContainer_Score/Label_ScoreValue")
 
 [node name="Floor" type="Sprite2D" parent="Game"]
 z_index = 1
@@ -86,15 +103,16 @@ wait_time = 2.5
 process_mode = 3
 stream = ExtResource("5_sq1ki")
 
-[node name="Control" type="Control" parent="."]
+[node name="Score" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Score"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -109,6 +127,95 @@ label_settings = SubResource("LabelSettings_lliya")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOverOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lquwl")
+color = Color(0, 0, 0, 0.313726)
+
+[node name="Label" type="Label" parent="GameOverOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = 269.0
+offset_right = -312.0
+offset_bottom = -893.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_272bh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverOverlay"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 225.0
+offset_top = 413.0
+offset_right = -224.0
+offset_bottom = -582.0
+alignment = 1
+
+[node name="VBoxContainer_Medal" type="VBoxContainer" parent="GameOverOverlay/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label_Medal" type="Label" parent="GameOverOverlay/HBoxContainer/VBoxContainer_Medal"]
+layout_mode = 2
+text = "MEDAL"
+label_settings = ExtResource("6_7mycd")
+
+[node name="TextureRect" type="TextureRect" parent="GameOverOverlay/HBoxContainer/VBoxContainer_Medal"]
+layout_mode = 2
+
+[node name="Space" type="Control" parent="GameOverOverlay/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer_Score" type="VBoxContainer" parent="GameOverOverlay/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label_Score" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
+layout_mode = 2
+text = "SCORE"
+label_settings = ExtResource("6_7mycd")
+horizontal_alignment = 2
+
+[node name="Label_ScoreValue" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_5vw27")
+horizontal_alignment = 2
+
+[node name="Label_Best" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
+layout_mode = 2
+text = "BEST"
+label_settings = ExtResource("6_7mycd")
+horizontal_alignment = 2
+
+[node name="Label_BestValue" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
+layout_mode = 2
+horizontal_alignment = 2
+
+[node name="Button_OK" type="Button" parent="GameOverOverlay"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 386.0
+offset_top = 720.0
+offset_right = -390.0
+offset_bottom = -507.0
+text = "OK"
+
 [connection signal="player_collided" from="Game/Player" to="Game" method="_on_player_player_collided"]
 [connection signal="score_point" from="Game/ObstacleSpawner" to="Game" method="_on_obstacle_spawner_score_point"]
 [connection signal="timeout" from="Game/ObstacleSpawner/Timer" to="Game/ObstacleSpawner" method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOverOverlay/Button_OK" to="." method="_on_button_ok_pressed"]
