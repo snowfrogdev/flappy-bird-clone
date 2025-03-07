@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmv518npd614e" path="res://obstacle_pair.tscn" id="4_26q5e"]
 [ext_resource type="AudioStream" uid="uid://cyisj05b64568" path="res://game_over_2.wav" id="5_sq1ki"]
 [ext_resource type="LabelSettings" uid="uid://cpke6m742rna" path="res://game_over_header_settings.tres" id="6_7mycd"]
+[ext_resource type="LabelSettings" uid="uid://dvum07brna4w" path="res://game_over_values_settings.tres" id="8_5vw27"]
 
 [sub_resource type="Gradient" id="Gradient_dofsh"]
 colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
@@ -39,9 +40,6 @@ font_size = 60
 [sub_resource type="LabelSettings" id="LabelSettings_272bh"]
 font = SubResource("SystemFont_7mycd")
 font_size = 91
-
-[sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
-font_size = 50
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -128,6 +126,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverOverlay" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -192,7 +191,7 @@ horizontal_alignment = 2
 [node name="Label_ScoreValue" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_5vw27")
+label_settings = ExtResource("8_5vw27")
 horizontal_alignment = 2
 
 [node name="Label_Best" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
@@ -203,6 +202,8 @@ horizontal_alignment = 2
 
 [node name="Label_BestValue" type="Label" parent="GameOverOverlay/HBoxContainer/HBoxContainer_Score"]
 layout_mode = 2
+text = "0"
+label_settings = ExtResource("8_5vw27")
 horizontal_alignment = 2
 
 [node name="Button_OK" type="Button" parent="GameOverOverlay"]
