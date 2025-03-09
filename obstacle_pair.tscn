@@ -1,13 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmv518npd614e"]
 
 [ext_resource type="Script" uid="uid://c8cg5fssphobo" path="res://obstacle_pair.gd" id="1_ae70w"]
-[ext_resource type="AudioStream" uid="uid://bp7iqyrwukgfk" path="res://sd_0.wav" id="2_lcrwi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4w42"]
-size = Vector2(148, 1282)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_heapi"]
-size = Vector2(150, 1276)
+[ext_resource type="AudioStream" uid="uid://bp7iqyrwukgfk" path="res://Assets/sd_0.wav" id="2_lcrwi"]
+[ext_resource type="Texture2D" uid="uid://db8f5f64l41hj" path="res://Assets/Top Obstacle.PNG" id="2_w3s7e"]
+[ext_resource type="Texture2D" uid="uid://c5004ki72px50" path="res://Assets/Bottom Obstacle.PNG" id="3_cu1ip"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ovxkm"]
 a = Vector2(0, 1312)
@@ -19,24 +15,32 @@ script = ExtResource("1_ae70w")
 position = Vector2(0, -748)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopObstacle"]
-position = Vector2(75, 641)
-shape = SubResource("RectangleShape2D_o4w42")
+[node name="TopObstacle" type="Sprite2D" parent="TopObstacle"]
+position = Vector2(113, 511)
+scale = Vector2(0.841387, 1)
+texture = ExtResource("2_w3s7e")
 
-[node name="ColorRect" type="ColorRect" parent="TopObstacle"]
-offset_right = 150.0
-offset_bottom = 1282.0
-color = Color(1, 0, 0, 1)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TopObstacle"]
+position = Vector2(113, 511)
+scale = Vector2(0.841387, 1)
+polygon = PackedVector2Array(43.5, -518.5, 43.5, -515.5, -158.6, -507.5, -170.6, -507.5, -150.5, -192.4, -150.5, -191.7, -180.3, 103.5, -181.7, 103.5, -137.5, 506.7, -137.5, 510.4, 86.4, 522.5, 105.7, 522.5, 55.8, 416.5, 101.5, 62.6, 101.5, 52.1, 52.5, -65.9, 52.5, -67.5, 176.5, -501.2, 176.5, -504.8, 180.5, -509.8, 180.5, -514.5, 117.5, -513.5, 56, -513.5)
 
 [node name="BottomObstacle" type="StaticBody2D" parent="."]
 position = Vector2(0, 919)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomObstacle"]
-position = Vector2(75, 638)
-shape = SubResource("RectangleShape2D_heapi")
+[node name="BottomObstacle" type="Sprite2D" parent="BottomObstacle"]
+position = Vector2(105, 516)
+scale = Vector2(0.764958, 1.01512)
+texture = ExtResource("3_cu1ip")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomObstacle"]
+position = Vector2(105, 516)
+scale = Vector2(0.764958, 1.01512)
+polygon = PackedVector2Array(84.5, -522.8, 84.5, -521.5, -133.6, -510.5, -137.3, -510.5, -180.3, -116.5, -181.7, -116.5, -151.3, 193.5, -150.6, 193.5, -170.5, 491.4, -170.5, 507.4, 43.5, 515.4, 43.5, 516.7, 45.6, 517.8, 50.5, 514.6, 57.5, 514.5, 57.5, 513.5, 177.5, 514.5, 181.2, 514.5, 53.1, 66.2, 99.9, -50.5, 101.8, -50.5, 56.3, -416.1, 102.7, -516.5, 104.4, -516.5, 104.6, -520.3)
 
 [node name="ColorRect" type="ColorRect" parent="BottomObstacle"]
+visible = false
 offset_right = 150.0
 offset_bottom = 1278.0
 color = Color(1, 0, 0, 1)

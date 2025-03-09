@@ -28,7 +28,8 @@ func position_obstacles(min_y, max_y):
   bottom_obstacle.position = Vector2(0, bottom_y)
 
   # Position the top pipe relative to the bottom obstacle + gap size
-  var top_obstacle_visual_height = top_obstacle.get_node("ColorRect").size.y
+  var top_obstacle_sprite: Sprite2D = top_obstacle.get_node("TopObstacle")
+  var top_obstacle_visual_height = top_obstacle_sprite.texture.get_height()
   top_obstacle.position = Vector2(0, bottom_y - gap_size - top_obstacle_visual_height)
 
 
