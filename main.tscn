@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=33 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cmf3jbdmxs5vc" path="res://Assets/Road.png" id="6_ycdy4"]
 [ext_resource type="LabelSettings" uid="uid://dvum07brna4w" path="res://game_over_values_settings.tres" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://d0mq5am11tegm" path="res://Assets/bird.png" id="12_vivmo"]
+[ext_resource type="AudioStream" uid="uid://bd68ljetitjdu" path="res://Assets/wings_flap_large.wav" id="13_2cqfq"]
 
 [sub_resource type="Gradient" id="Gradient_2cqfq"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.054902)
@@ -175,12 +176,15 @@ metadata/_edit_group_ = true
 position = Vector2(2.31817, 1.49999)
 scale = Vector2(0.586777, 0.586777)
 sprite_frames = SubResource("SpriteFrames_82xsv")
-frame_progress = 0.0178203
+frame_progress = 0.607606
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Player"]
 position = Vector2(-6, 1)
 rotation = -1.59467
 shape = SubResource("CapsuleShape2D_getpj")
+
+[node name="WingsFlapSfx" type="AudioStreamPlayer" parent="Game/Player"]
+stream = ExtResource("13_2cqfq")
 
 [node name="GameOverSfx" type="AudioStreamPlayer" parent="Game"]
 process_mode = 3
