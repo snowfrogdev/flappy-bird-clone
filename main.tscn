@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=32 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
@@ -14,15 +14,59 @@
 [ext_resource type="LabelSettings" uid="uid://cpke6m742rna" path="res://game_over_header_settings.tres" id="6_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cmf3jbdmxs5vc" path="res://Assets/Road.png" id="6_ycdy4"]
 [ext_resource type="LabelSettings" uid="uid://dvum07brna4w" path="res://game_over_values_settings.tres" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://d0mq5am11tegm" path="res://Assets/bird.png" id="12_vivmo"]
 
-[sub_resource type="Gradient" id="Gradient_0d315"]
-colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 1)
+[sub_resource type="Gradient" id="Gradient_2cqfq"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.054902)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vs35t"]
-gradient = SubResource("Gradient_0d315")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yaehf"]
+gradient = SubResource("Gradient_2cqfq")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfbeh"]
-size = Vector2(60, 58)
+[sub_resource type="Gradient" id="Gradient_vivmo"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2cqfq"]
+gradient = SubResource("Gradient_vivmo")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqfq"]
+atlas = ExtResource("12_vivmo")
+region = Rect2(0, 0, 187, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaehf"]
+atlas = ExtResource("12_vivmo")
+region = Rect2(187, 0, 187, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_074og"]
+atlas = ExtResource("12_vivmo")
+region = Rect2(374, 0, 187, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cegan"]
+atlas = ExtResource("12_vivmo")
+region = Rect2(561, 0, 187, 121)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82xsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaehf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_074og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cegan")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_getpj"]
+radius = 27.992
+height = 74.0267
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
 size = Vector2(1052, 191)
@@ -66,6 +110,12 @@ motion_mirroring = Vector2(960, 0)
 position = Vector2(480, 640)
 texture = ExtResource("3_4c57u")
 
+[node name="Mist2" type="Sprite2D" parent="Game/ParallaxBackground"]
+position = Vector2(473.5, 496.785)
+rotation = 1.57079
+scale = Vector2(3.92107, 1331.5)
+texture = SubResource("GradientTexture1D_yaehf")
+
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Game/ParallaxBackground"]
 motion_scale = Vector2(0.15, 0.15)
 motion_mirroring = Vector2(960, 0)
@@ -73,6 +123,12 @@ motion_mirroring = Vector2(960, 0)
 [node name="Middleground" type="Sprite2D" parent="Game/ParallaxBackground/ParallaxLayer2"]
 position = Vector2(480, 640)
 texture = ExtResource("4_efxa6")
+
+[node name="Mist" type="Sprite2D" parent="Game/ParallaxBackground"]
+position = Vector2(473.501, 1065.49)
+rotation = 1.57079
+scale = Vector2(0.801543, 1331.5)
+texture = SubResource("GradientTexture1D_2cqfq")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Game/ParallaxBackground"]
 motion_scale = Vector2(0.5, 0.5)
@@ -83,7 +139,7 @@ position = Vector2(480, 640)
 texture = ExtResource("5_dg77c")
 
 [node name="ObstacleSpawner" type="Node2D" parent="Game/ParallaxBackground"]
-position = Vector2(1749, -2)
+position = Vector2(1056, -2)
 script = ExtResource("2_bnk71")
 obstacle_scene = ExtResource("4_26q5e")
 speed = 250.0
@@ -115,14 +171,16 @@ script = ExtResource("1_4wtk3")
 FLAP_STRENGTH = -500.0
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Game/Player"]
-position = Vector2(-1.49998, 0.999988)
-scale = Vector2(0.238281, 58)
-texture = SubResource("GradientTexture1D_vs35t")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Game/Player"]
+position = Vector2(2.31817, 1.49999)
+scale = Vector2(0.586777, 0.586777)
+sprite_frames = SubResource("SpriteFrames_82xsv")
+frame_progress = 0.325319
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Player"]
-position = Vector2(-2, 1)
-shape = SubResource("RectangleShape2D_jfbeh")
+position = Vector2(-6, 1)
+rotation = -1.59467
+shape = SubResource("CapsuleShape2D_getpj")
 
 [node name="GameOverSfx" type="AudioStreamPlayer" parent="Game"]
 process_mode = 3
@@ -140,7 +198,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 

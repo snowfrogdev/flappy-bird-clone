@@ -1,8 +1,12 @@
 extends CharacterBody2D
 
 @export var FLAP_STRENGTH: float = -300.0
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 signal player_collided()
+
+func _ready() -> void:
+  animated_sprite.play()
 
 func _physics_process(delta: float) -> void:
   if not is_on_floor():
