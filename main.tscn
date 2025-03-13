@@ -72,11 +72,14 @@ height = 74.0267
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
 size = Vector2(1052, 191)
 
-[sub_resource type="SystemFont" id="SystemFont_u4few"]
+[sub_resource type="SystemFont" id="SystemFont_2cqfq"]
+font_names = PackedStringArray("Kirang Haerang")
 
 [sub_resource type="LabelSettings" id="LabelSettings_lliya"]
-font = SubResource("SystemFont_u4few")
-font_size = 60
+font = SubResource("SystemFont_2cqfq")
+font_size = 100
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_lquwl"]
 
@@ -176,7 +179,7 @@ metadata/_edit_group_ = true
 position = Vector2(2.31817, 1.49999)
 scale = Vector2(0.586777, 0.586777)
 sprite_frames = SubResource("SpriteFrames_82xsv")
-frame_progress = 0.607606
+frame_progress = 0.996087
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Game/Player"]
 position = Vector2(-6, 1)
