@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=37 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
@@ -96,6 +96,43 @@ outline_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_074og"]
 font = ExtResource("15_yaehf")
 font_size = 37
+
+[sub_resource type="Animation" id="Animation_yaehf"]
+resource_name = "Title"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameName:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 345.5), Vector2(0, 366)]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameName:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 345.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cegan"]
+_data = {
+&"RESET": SubResource("Animation_074og"),
+&"Title": SubResource("Animation_yaehf")
+}
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -314,7 +351,6 @@ offset_bottom = -626.0
 theme_override_fonts/font = ExtResource("15_yaehf")
 theme_override_font_sizes/font_size = 44
 text = "OK"
-flat = true
 
 [node name="TitleScreen" type="Control" parent="."]
 layout_mode = 3
@@ -329,8 +365,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 394.0
-offset_bottom = -863.0
+offset_top = 345.5
+offset_bottom = -814.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "LOONEY BIRD"
@@ -350,6 +386,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Space or Left Click to flap"
 label_settings = SubResource("LabelSettings_074og")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleScreen"]
+libraries = {
+&"": SubResource("AnimationLibrary_cegan")
+}
+autoplay = "Title"
 
 [connection signal="score_point" from="Game/ParallaxBackground/ObstacleSpawner" to="Game" method="_on_obstacle_spawner_score_point"]
 [connection signal="timeout" from="Game/ParallaxBackground/ObstacleSpawner/Timer" to="Game/ParallaxBackground/ObstacleSpawner" method="_on_timer_timeout"]
