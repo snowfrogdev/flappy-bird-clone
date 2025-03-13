@@ -1,6 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cpke6m742rna"]
 
 [sub_resource type="SystemFont" id="SystemFont_d4j8v"]
+font_names = PackedStringArray("Kirang Haerang")
 
 [resource]
 font = SubResource("SystemFont_d4j8v")

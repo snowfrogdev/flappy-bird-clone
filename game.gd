@@ -7,7 +7,7 @@ var score = 0
 @onready var score_label: Label = $"/root/CanvasLayer/Score/Label"
 @onready var game_over_sfx: AudioStreamPlayer = $"GameOverSfx"
 @onready var game_over_overlay: ColorRect = $"/root/CanvasLayer/GameOverOverlay"
-@onready var best_label: Label = $"/root/CanvasLayer/GameOverOverlay/HBoxContainer/HBoxContainer_Score/Label_BestValue"
+@onready var best_label: Label = $"/root/CanvasLayer/GameOverOverlay/HBoxContainer/VBoxContainer_Best/Label_BestValue"
 
 func _ready():
   get_tree().paused = false
