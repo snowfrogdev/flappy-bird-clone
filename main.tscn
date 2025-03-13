@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=34 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
@@ -86,6 +86,16 @@ font = ExtResource("15_yaehf")
 font_size = 91
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yaehf"]
+font = ExtResource("15_yaehf")
+font_size = 120
+font_color = Color(0.960784, 0.729412, 0.0941176, 1)
+outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_074og"]
+font = ExtResource("15_yaehf")
+font_size = 37
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -199,6 +209,7 @@ position = Vector2(460, 94.5)
 shape = SubResource("RectangleShape2D_w48qg")
 
 [node name="Score" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,6 +315,41 @@ theme_override_fonts/font = ExtResource("15_yaehf")
 theme_override_font_sizes/font_size = 44
 text = "OK"
 flat = true
+
+[node name="TitleScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameName" type="Label" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 394.0
+offset_bottom = -863.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOONEY BIRD"
+label_settings = SubResource("LabelSettings_yaehf")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 281.0
+offset_top = 753.0
+offset_right = -315.0
+offset_bottom = -489.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Space or Left Click to flap"
+label_settings = SubResource("LabelSettings_074og")
 
 [connection signal="score_point" from="Game/ParallaxBackground/ObstacleSpawner" to="Game" method="_on_obstacle_spawner_score_point"]
 [connection signal="timeout" from="Game/ParallaxBackground/ObstacleSpawner/Timer" to="Game/ParallaxBackground/ObstacleSpawner" method="_on_timer_timeout"]

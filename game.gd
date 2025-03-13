@@ -10,7 +10,7 @@ var score = 0
 @onready var best_label: Label = $"/root/CanvasLayer/GameOverOverlay/HBoxContainer/VBoxContainer_Best/Label_BestValue"
 
 func _ready():
-  get_tree().paused = false
+  get_tree().paused = true
   score_label.show()
   var sm = load("res://score_manager.gd").new()
   var high_score = sm.load_highscore()
