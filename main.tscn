@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=32 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
@@ -16,6 +16,7 @@
 [ext_resource type="LabelSettings" uid="uid://dvum07brna4w" path="res://game_over_values_settings.tres" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://d0mq5am11tegm" path="res://Assets/bird.png" id="12_vivmo"]
 [ext_resource type="AudioStream" uid="uid://bd68ljetitjdu" path="res://Assets/wings_flap_large.wav" id="13_2cqfq"]
+[ext_resource type="FontFile" uid="uid://cug3unmfc5o1t" path="res://Assets/KirangHaerang-Regular.ttf" id="15_yaehf"]
 
 [sub_resource type="Gradient" id="Gradient_2cqfq"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.054902)
@@ -72,28 +73,19 @@ height = 74.0267
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w48qg"]
 size = Vector2(1052, 191)
 
-[sub_resource type="SystemFont" id="SystemFont_2cqfq"]
-font_names = PackedStringArray("Kirang Haerang")
-
 [sub_resource type="LabelSettings" id="LabelSettings_lliya"]
-font = SubResource("SystemFont_2cqfq")
+font = ExtResource("15_yaehf")
 font_size = 100
 outline_size = 18
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_lquwl"]
 
-[sub_resource type="SystemFont" id="SystemFont_7mycd"]
-font_names = PackedStringArray("Kirang Haerang")
-
 [sub_resource type="LabelSettings" id="LabelSettings_272bh"]
-font = SubResource("SystemFont_7mycd")
+font = ExtResource("15_yaehf")
 font_size = 91
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_yaehf"]
-font_names = PackedStringArray("Kirang Haerang")
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3
@@ -308,7 +300,7 @@ offset_left = 386.0
 offset_top = 601.0
 offset_right = -390.0
 offset_bottom = -626.0
-theme_override_fonts/font = SubResource("SystemFont_yaehf")
+theme_override_fonts/font = ExtResource("15_yaehf")
 theme_override_font_sizes/font_size = 44
 text = "OK"
 flat = true

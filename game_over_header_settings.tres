@@ -1,8 +1,7 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cpke6m742rna"]
 
-[sub_resource type="SystemFont" id="SystemFont_d4j8v"]
-font_names = PackedStringArray("Kirang Haerang")
+[ext_resource type="FontFile" uid="uid://cug3unmfc5o1t" path="res://Assets/KirangHaerang-Regular.ttf" id="1_sgb43"]
 
 [resource]
-font = SubResource("SystemFont_d4j8v")
+font = ExtResource("1_sgb43")
 font_size = 30
