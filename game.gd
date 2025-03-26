@@ -28,6 +28,11 @@ func _on_player_player_collided() -> void:
   if score > high_score:
     sm.save_highscore(score)
     best_label.text = str(score)
+
+  Music.stream.set_sync_stream_volume(0, -60)
+  Music.stream.set_sync_stream_volume(4, -60)
+  Music.stream.set_sync_stream_volume(5, -60)
+  Music.set_volume_db(-5)
    
 
 func _on_obstacle_spawner_score_point() -> void:

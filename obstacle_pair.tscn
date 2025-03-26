@@ -56,5 +56,6 @@ shape = SubResource("SegmentShape2D_ovxkm")
 
 [node name="ScoreSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_lcrwi")
+volume_db = 15.0
 
 [connection signal="body_exited" from="ScoreTrigger" to="." method="_on_score_trigger_body_exited"]

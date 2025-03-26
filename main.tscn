@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cjyi4e8wdrbah"]
+[gd_scene load_steps=39 format=3 uid="uid://cjyi4e8wdrbah"]
 
 [ext_resource type="Script" uid="uid://ba584j2stgj28" path="res://player.gd" id="1_4wtk3"]
 [ext_resource type="Script" uid="uid://gjqec06cc757" path="res://main.gd" id="1_272bh"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://d0mq5am11tegm" path="res://Assets/bird.png" id="12_vivmo"]
 [ext_resource type="AudioStream" uid="uid://bd68ljetitjdu" path="res://Assets/wings_flap_large.wav" id="13_2cqfq"]
 [ext_resource type="FontFile" uid="uid://cug3unmfc5o1t" path="res://Assets/KirangHaerang-Regular.ttf" id="15_yaehf"]
+[ext_resource type="Script" uid="uid://baug1ccutbyvo" path="res://music_button.gd" id="18_074og"]
 
 [sub_resource type="Gradient" id="Gradient_2cqfq"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.054902)
@@ -87,6 +88,9 @@ font_size = 91
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Theme" id="Theme_yaehf"]
+default_font = ExtResource("15_yaehf")
+
 [sub_resource type="LabelSettings" id="LabelSettings_yaehf"]
 font = ExtResource("15_yaehf")
 font_size = 120
@@ -96,6 +100,21 @@ outline_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_074og"]
 font = ExtResource("15_yaehf")
 font_size = 37
+
+[sub_resource type="Animation" id="Animation_074og"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameName:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 345.5)]
+}
 
 [sub_resource type="Animation" id="Animation_yaehf"]
 resource_name = "Title"
@@ -111,21 +130,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 345.5), Vector2(0, 366)]
-}
-
-[sub_resource type="Animation" id="Animation_074og"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameName:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 345.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cegan"]
@@ -233,10 +237,12 @@ shape = SubResource("CapsuleShape2D_getpj")
 
 [node name="WingsFlapSfx" type="AudioStreamPlayer" parent="Game/Player"]
 stream = ExtResource("13_2cqfq")
+volume_db = 5.0
 
 [node name="GameOverSfx" type="AudioStreamPlayer" parent="Game"]
 process_mode = 3
 stream = ExtResource("5_sq1ki")
+volume_db = 5.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Game"]
 position = Vector2(0, 1109)
@@ -359,6 +365,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+
+[node name="MusicButton" type="CheckButton" parent="TitleScreen"]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 1189.0
+offset_right = 802.0
+offset_bottom = 1220.0
+scale = Vector2(2.28, 2.28)
+theme = SubResource("Theme_yaehf")
+button_pressed = true
+text = "Music"
+alignment = 2
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("18_074og")
 
 [node name="GameName" type="Label" parent="TitleScreen"]
 layout_mode = 1
@@ -397,3 +419,5 @@ autoplay = "Title"
 [connection signal="timeout" from="Game/ParallaxBackground/ObstacleSpawner/Timer" to="Game/ParallaxBackground/ObstacleSpawner" method="_on_timer_timeout"]
 [connection signal="player_collided" from="Game/Player" to="Game" method="_on_player_player_collided"]
 [connection signal="pressed" from="GameOverOverlay/Button_OK" to="." method="_on_button_ok_pressed"]
+[connection signal="gui_input" from="TitleScreen/MusicButton" to="TitleScreen/MusicButton" method="_on_gui_input"]
+[connection signal="toggled" from="TitleScreen/MusicButton" to="TitleScreen/MusicButton" method="_on_toggled"]

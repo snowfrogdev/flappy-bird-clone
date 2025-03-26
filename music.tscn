@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://rnvv7csvikkm"]
+
+[ext_resource type="AudioStream" uid="uid://bg10v15wktnlk" path="res://Assets/Music/clarinet.ogg" id="1_boywh"]
+[ext_resource type="AudioStream" uid="uid://d0y1arkwvjfbn" path="res://Assets/Music/piano.ogg" id="2_gqg2j"]
+[ext_resource type="AudioStream" uid="uid://fanhlemsst5r" path="res://Assets/Music/bass.ogg" id="3_eh16a"]
+[ext_resource type="AudioStream" uid="uid://cdqvc3l6hgta7" path="res://Assets/Music/ride.ogg" id="4_3hkwp"]
+[ext_resource type="AudioStream" uid="uid://cw1deha3xotoy" path="res://Assets/Music/snare.ogg" id="5_x2lxy"]
+[ext_resource type="AudioStream" uid="uid://bp3gdeyr8vjch" path="res://Assets/Music/kick.ogg" id="6_kuual"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_qsp4k"]
+stream_count = 6
+stream_0/stream = ExtResource("1_boywh")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("2_gqg2j")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("3_eh16a")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("4_3hkwp")
+stream_3/volume = 0.0
+stream_4/stream = ExtResource("5_x2lxy")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("6_kuual")
+stream_5/volume = -60.0
+
+[node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
+stream = SubResource("AudioStreamSynchronized_qsp4k")
+volume_db = -5.0
