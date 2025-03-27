@@ -1,6 +1,6 @@
 # Looney Bird
 
-This project is an implementation of the Flappy Bird game as part of the [20 Games Challenge](https://20_games_challenge.gitlab.io/games/flappy/).
+This project is an implementation of the Flappy Bird game as part of the [20 Games Challenge](https://20_games_challenge.gitlab.io/games/flappy/). You can play this game on [itch.io](https://snowfrog.itch.io/looney-bird).
 
 ## Implementation Goals
 
@@ -20,6 +20,10 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 ### Super Stretch Goals
 
 - [x] Add music to the game.
+
+### Time investment
+
+All in all, I spent a total of 50 hours on this project. This includes time spent on research, coding, making the art assets, animations, music, sound effects and releasing on [itch.io](https://snowfrog.itch.io/looney-bird). Going in, I was relatively new to [Godot](https://godotengine.org/) and completely new to making art and music. I used [Krita](https://krita.org/en/) for the art and animation and I used [FL Studio](https://www.image-line.com/fl-studio/) for the music. Both software were new to me. I expect that if I was to do this again, it would probably take me half the time.
 
 ## How to Run
 
