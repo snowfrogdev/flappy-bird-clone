@@ -1,4 +1,4 @@
-# Flappy Bird Clone
+# Looney Bird
 
 This project is an implementation of the Flappy Bird game as part of the [20 Games Challenge](https://20_games_challenge.gitlab.io/games/flappy/).
 
@@ -15,12 +15,12 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 - [x] Add some sounds that will play each time the player gains a point, and when the player loses.
 - [x] Add a basic game-over screen to display the player’s score.
 - [x] Track the high-score between play sessions and display the high score alongside the current score.
-- [ ] Add some background art! Try layering the background and scrolling at a different rate to the foreground obstacles. This is called Parallax scrolling.
+- [x] Add some background art! Try layering the background and scrolling at a different rate to the foreground obstacles. This is called Parallax scrolling.
 
 ## How to Run
 
 1. Clone the repository.
-2. Open the project in [Godot 4.3](https://godotengine.org/download/archive/4.3-stable/).
+2. Open the project in [Godot 4.4](https://godotengine.org/download/archive/4.4-stable/).
 3. Press the play button in the Godot editor to run the game.
 
 ## License

@@ -17,10 +17,16 @@ func _on_button_ok_pressed() -> void:
 
 func _ready() -> void:
   if Music.playing == false:
+    Music.stream.set_sync_stream_volume(0, -60)
+    Music.stream.set_sync_stream_volume(1, 0)
+    Music.stream.set_sync_stream_volume(2, 0)
+    Music.stream.set_sync_stream_volume(3, 0)
+    Music.stream.set_sync_stream_volume(4, -60)
+    Music.stream.set_sync_stream_volume(5, -60)
+    Music.set_volume_db(-5)
     Music.play()
 
 func _unhandled_input(event: InputEvent) -> void:
-  print("Input event: ", event)
   if game.get_tree().paused and not game_over_overlay.is_visible_in_tree() and event.is_action_pressed("Flap Wings"):
     game.get_tree().paused = false
     score_control.show()
@@ -35,7 +41,7 @@ func _process(_delta):
     var current_bar = (Music.get_playback_position() + AudioServer.get_time_since_last_mix()) / BAR_LENGTH
     if int(current_bar) >= waiting_for_music_bar:
       waiting_for_music_bar = 0
-      Music.stream.set_sync_stream_volume(0, -3)
-      Music.stream.set_sync_stream_volume(4, -3)
-      Music.stream.set_sync_stream_volume(5, -3)
-      Music.set_volume_db(0)
+      Music.stream.set_sync_stream_volume(0, 0)
+      Music.stream.set_sync_stream_volume(4, 0)
+      Music.stream.set_sync_stream_volume(5, 0)
+      Music.set_volume_db(-3)
