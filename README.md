@@ -17,6 +17,10 @@ This project is an implementation of the Flappy Bird game as part of the [20 Gam
 - [x] Track the high-score between play sessions and display the high score alongside the current score.
 - [x] Add some background art! Try layering the background and scrolling at a different rate to the foreground obstacles. This is called Parallax scrolling.
 
+### Super Stretch Goals
+
+- [x] Add music to the game.
+
 ## How to Run
 
 1. Clone the repository.
